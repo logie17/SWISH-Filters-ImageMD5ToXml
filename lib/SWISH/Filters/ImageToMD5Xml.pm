@@ -64,7 +64,7 @@ sub _parse_xml {
 
 =head2 filter( $self, $doc )
 
-Generates Imager::ImageTypes meta data for indexing.
+Generates XML meta data for indexing.
 
 =cut
 
