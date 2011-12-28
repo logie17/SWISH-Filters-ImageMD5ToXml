@@ -3,3 +3,7 @@ Revision history for SWISH-Filters-ImageToMD5Xml
 0.01    12/27/2011
         Initial Release
 
+0.02    12/27/2011
+        Updated Makefile.PL to have the appropriate dependencies to fix test
+        builds.
+
