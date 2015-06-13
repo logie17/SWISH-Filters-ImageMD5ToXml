@@ -13,6 +13,8 @@ test_requires 'Test::More';
 test_requires 'Test::MockObject';
 test_requires 'File::Slurp';
 
+repository 'https://github.com/logie17/SWISH-Filters-ImageMD5ToXml';
+
 
 auto_install;
 
