@@ -1,4 +1,4 @@
-use inc::Module::Install;
+use inc::Module::Install 1.06;
 
 name     'SWISH-Filters-ImageToMD5Xml';
 all_from 'lib/SWISH/Filters/ImageToMD5Xml.pm';
@@ -14,9 +14,6 @@ test_requires 'Test::MockObject';
 test_requires 'File::Slurp';
 
 repository 'https://github.com/logie17/SWISH-Filters-ImageMD5ToXml';
-
-
-auto_install;
 
 WriteAll;
 
