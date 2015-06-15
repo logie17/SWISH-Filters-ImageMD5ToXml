@@ -10,9 +10,9 @@ use_ok( 'SWISH::Filters::ImageToMD5Xml' );
 my $subject = SWISH::Filters::ImageToMD5Xml->new;
 my $xml = $subject->filter(get_doc());
 
-#open my $fh, ">", 't/image_base64_data.xml';
-#print $fh $xml;
-#close $fh;
+open my $fh, ">", 't/image_base64_data.xml';
+print $fh $xml;
+close $fh;
 
 is $xml, read_file('t/image_base64_data.xml');
 

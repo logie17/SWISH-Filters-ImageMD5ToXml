@@ -9,6 +9,7 @@ requires 'SWISH::Filter'                    => 0;
 requires 'Search::Tools::XML'               => 0.06;
 requires 'MIME::Base64'                     => 0;
 requires 'Digest::MD5'                      => 0;
+requires 'XML::Simple'                      => 0;
 test_requires 'Test::More';
 test_requires 'Test::MockObject';
 test_requires 'File::Slurp';

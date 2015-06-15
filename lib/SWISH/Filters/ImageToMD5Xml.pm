@@ -3,6 +3,7 @@ use strict;
 use warnings;
 use base 'SWISH::Filters::Base';
 use Digest::MD5 qw(md5);
+use XML::Simple;
 
 =head1 NAME
 
@@ -76,8 +77,8 @@ sub filter {
     if ( my $xml = $doc->fetch_filename ) {
         if ( my $ds  = $self->_parse_xml($xml) ) {
             my $utils  = Search::Tools::XML->new;
-            $ds->{md5}    = md5($ds->{b64_data});
-            my $xml = $utils->perl_to_xml($ds, 'image_data', );
+            $ds->{md5} = md5($ds->{b64_data});
+            my $xml    = $utils->perl_to_xml($ds, 'image_data', );
             $doc->set_content_type('application/xml');
             return $xml;
         }
