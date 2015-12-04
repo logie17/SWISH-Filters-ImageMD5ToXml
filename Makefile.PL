@@ -11,8 +11,6 @@ requires 'MIME::Base64'                     => 0;
 requires 'Digest::MD5'                      => 0;
 requires 'XML::Simple'                      => 0;
 test_requires 'Test::More';
-test_requires 'Test::MockObject';
-test_requires 'File::Slurp';
 
 repository 'https://github.com/logie17/SWISH-Filters-ImageMD5ToXml';
 
