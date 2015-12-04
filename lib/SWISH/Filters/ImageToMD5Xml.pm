@@ -68,7 +68,8 @@ sub _parse_xml {
 
 =head2 filter( $self, $doc )
 
-Generates XML meta data for indexing.
+Generates XML meta data for indexing. If I<$doc> contains the C<b64_data> element (tag)
+then a MD5 checksum string will be added to the XML and returned with a new root element C<image_data>.
 
 =cut
 
@@ -77,13 +78,11 @@ sub filter {
 
     return if $doc->is_binary;
 
-    my $xml_converter = Search::Tools::XML->new();
-
     if ( my $xml = $doc->fetch_filename ) {
         if ( my $ds = $self->_parse_xml($xml) ) {
             return unless exists $ds->{b64_data};
             $ds->{md5} = md5($ds->{b64_data});
-            my $xml    = $xml_converter->perl_to_xml($ds, 'image_data', );
+            my $xml    = Search::Tools::XML->perl_to_xml($ds, { root => 'image_data' });
             $doc->set_content_type('application/xml');
             return $xml;
         }
