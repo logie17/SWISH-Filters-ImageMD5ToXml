@@ -11,17 +11,20 @@ SWISH::Filters::ImageToMD5Xml - Adds MD5 information when filtering an image for
 
 =head1 VERSION
 
-Version 0.02
+Version 0.04
 
 =cut
 
-our $VERSION = '0.03';
-
+our $VERSION = '0.04';
 
 =head1 SYNOPSIS
 
-A SWISHE filter that takes an incoming image XML applies a MD5 checksum
-against the binary content of the image.  
+A L<SWISH::Filter> that takes an incoming image XML and applies a MD5 checksum
+against the binary content of the image.
+
+The XML structure this filter expects includes an C<b64_data> element containing
+the Base64 string representing the image. If that element (tag) is not found,
+no filter is applied.
 
 =head1 METHODS
 
@@ -65,7 +68,8 @@ sub _parse_xml {
 
 =head2 filter( $self, $doc )
 
-Generates XML meta data for indexing.
+Generates XML meta data for indexing. If I<$doc> contains the C<b64_data> element (tag)
+then a MD5 checksum string will be added to the XML and returned with a new root element C<image_data>.
 
 =cut
 
@@ -75,10 +79,10 @@ sub filter {
     return if $doc->is_binary;
 
     if ( my $xml = $doc->fetch_filename ) {
-        if ( my $ds  = $self->_parse_xml($xml) ) {
-            my $utils  = Search::Tools::XML->new;
+        if ( my $ds = $self->_parse_xml($xml) ) {
+            return unless exists $ds->{b64_data};
             $ds->{md5} = md5($ds->{b64_data});
-            my $xml    = $utils->perl_to_xml($ds, 'image_data', );
+            my $xml    = Search::Tools::XML->perl_to_xml($ds, { root => 'image_data' });
             $doc->set_content_type('application/xml');
             return $xml;
         }
