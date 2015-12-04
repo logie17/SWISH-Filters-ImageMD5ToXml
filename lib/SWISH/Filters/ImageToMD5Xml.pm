@@ -84,7 +84,7 @@ sub filter {
             $ds->{md5} = md5($ds->{b64_data});
             my $xml    = Search::Tools::XML->perl_to_xml($ds, { root => 'image_data' });
             $doc->set_content_type('application/xml');
-            return $xml;
+            return ( \$xml );
         }
     }
 
