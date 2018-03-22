@@ -5,4 +5,5 @@ perl:
   - "5.22"
   - "5.20"
 install:
-  - cpan -i Test::MockObject SWISH::Filter Search::Tools MIME::Base64 Digest::MD5 XML::Simple Test::More
+  - cpanm --no-skip-satisfied Test::MockObject SWISH::Filter Search::Tools || { cat ~/.cpanm/build.log ; false ; }
+  - cpanm --no-skip-satisfied MIME::Base64 Digest::MD5 XML::Simple Test::More || { cat ~/.cpanm/build.log ; false ; }
