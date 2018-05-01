@@ -18,6 +18,7 @@ META.yml
 README
 t/00-load.t
 t/01-filter.t
+t/02-xml-matching.t
 t/boilerplate.t
 t/image_base64_data.xml
 t/manifest.t
