@@ -75,6 +75,7 @@
 ^.devel-local$
 ^out$
 ^tmon.out$
+^.travis.yml$
 
 # Author Notes
 ^notes
