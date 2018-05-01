@@ -1,0 +1,9 @@
+sudo: false
+language: perl
+perl:
+  - "5.24"
+  - "5.22"
+  - "5.20"
+install:
+  - cpanm --no-skip-satisfied Test::MockObject SWISH::Filter Search::Tools || { cat ~/.cpanm/build.log ; false ; }
+  - cpanm --no-skip-satisfied MIME::Base64 Digest::MD5 XML::Simple Test::More || { cat ~/.cpanm/build.log ; false ; }
